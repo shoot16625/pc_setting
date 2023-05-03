@@ -1,0 +1,194 @@
+{
+  "workbench.startupEditor": "none",
+  "workbench.iconTheme": "vscode-icons",
+  "workbench.editor.enablePreview": true,
+  "workbench.editor.enablePreviewFromQuickOpen": true,
+  "workbench.colorCustomizations": {
+    "diffEditor.insertedTextBackground": "#090b12",
+    "diffEditor.removedTextBackground": "#b205b57c",
+
+    "diffEditor.insertedLineBackground": "#22336866",
+    "diffEditor.removedLineBackground": "#72336a66",
+
+    "diffEditorGutter.insertedLineBackground": "#223368ff",
+    "diffEditorGutter.removedLineBackground": "#72336aff",
+
+    "diffEditorOverview.insertedForeground": "#0296b4",
+    "diffEditorOverview.removedForeground": "#82059e"
+  },
+  "workbench.editorAssociations": {
+    "*.msgpack": "default"
+  },
+  "workbench.list.smoothScrolling": true,
+
+  "terminal.integrated.defaultProfile.osx": "zsh",
+  "terminal.integrated.fontFamily": "MesloLGS NF",
+  "terminal.integrated.copyOnSelection": true,
+  "terminal.integrated.rightClickBehavior": "paste",
+  "terminal.integrated.enableMultiLinePasteWarning": false,
+  "vsicons.dontShowNewVersionMessage": true,
+  "explorer.confirmDragAndDrop": false,
+  "explorer.confirmDelete": false,
+  "redhat.telemetry.enabled": true,
+  "gitlens.statusBar.enabled": false,
+  "trailing-spaces.trimOnSave": true,
+  "trailing-spaces.syntaxIgnore": ["markdown"],
+  "cSpell.maxNumberOfProblems": 5,
+  "cSpell.numSuggestions": 4,
+  "cSpell.enabled": false,
+  "cSpell.showStatus": false,
+
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.renderWhitespace": "boundary",
+  "editor.trimAutoWhitespace": false,
+  "editor.insertSpaces": false,
+  "editor.wordWrap": "on",
+  "editor.formatOnPaste": false,
+  "editor.formatOnSave": true,
+  "editor.formatOnType": false,
+  "editor.cursorSmoothCaretAnimation": "on",
+  "editor.smoothScrolling": true,
+  "editor.inlineSuggest.enabled": true,
+
+  "files.insertFinalNewline": true,
+
+  "prettier.printWidth": 120,
+  "prettier.tabWidth": 2,
+  "prettier.useTabs": false,
+  // "prettier.singleQuote": true,
+  // "prettier.jsxSingleQuote": true,
+
+  "[html]": {
+    "editor.formatOnSave": true
+  },
+  "[css]": {
+    "editor.formatOnSave": true
+  },
+  "remark.format": {
+    "rules": {
+      "bullet": "-",
+      "listItemIndent": "1",
+      "fences": true,
+      "rule": "-",
+      "ruleSpaces": false
+    }
+  },
+  "[ignore]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  "[markdown]": {
+    "editor.formatOnSave": true,
+    "editor.quickSuggestions": {
+      "comments": "on",
+      "strings": "on",
+      "other": "on"
+    }
+  },
+  "[json]": {
+    "editor.formatOnSave": true
+  },
+
+  "[yaml]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "[helm]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+
+  "[shellscript]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+
+  "[dockerfile]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "ms-azuretools.vscode-docker"
+  },
+  "[dockercompose]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "ms-azuretools.vscode-docker"
+  },
+
+  "[go]": {
+    "editor.defaultFormatter": "golang.go",
+    "editor.formatOnSave": true
+  },
+  "go.gopath": "/Users/shuto.uchida/go",
+  "go.formatTool": "goimports",
+  "go.lintTool": "golangci-lint",
+  "go.toolsManagement.autoUpdate": true,
+  "go.toolsEnvVars": {
+    "GO111MODULE": "on"
+    // "CGO_CFLAGS_ALLOW": "-mfma",
+  },
+
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.python",
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": true
+    },
+    "editor.formatOnType": true
+  },
+  "python.languageServer": "Pylance",
+  "python.defaultInterpreterPath": "python3",
+  "python.envFile": "${workspaceFolder}/.venv",
+  "python.analysis.completeFunctionParens": true,
+  "python.formatting.provider": "black",
+  "python.linting.enabled": true,
+  "python.linting.pylintEnabled": false,
+  "python.linting.lintOnSave": true,
+  "python.linting.mypyEnabled": true,
+  "python.linting.flake8Enabled": true,
+  "python.linting.flake8Args": ["--max-line-length=120", "--ignore=E203,W503,W504"],
+
+  "[terraform]": {
+    "editor.defaultFormatter": "hashicorp.terraform",
+    "editor.formatOnSave": true,
+    "editor.formatOnSaveMode": "file"
+  },
+  "[terraform-vars]": {
+    "editor.defaultFormatter": "hashicorp.terraform",
+    "editor.formatOnSave": true,
+    "editor.formatOnSaveMode": "file"
+  },
+  "terraform.languageServer.indexing.ignoreDirectoryNames": ["modules", "providers"],
+  "terraform.languageServer.enable": true,
+
+  "githubPullRequests.terminalLinksHandler": "github",
+  "githubPullRequests.pullBranch": "never",
+  "github-actions.org-features": true,
+  "jupyter.askForKernelRestart": false,
+  "msg.dbEditor.connectionBrowser.showGreeting": false,
+  "msg.editor.dbVersion": "8.0.30",
+  "msg.editor.wordWrap": "off",
+  "terminal.integrated.smoothScrolling": true,
+  "window.newWindowDimensions": "inherit",
+  "git.openRepositoryInParentFolders": "never",
+  "github.copilot.enable": {
+    "*": true,
+    "yaml": true,
+    "plaintext": true,
+    "markdown": true
+  },
+  "settings.cycle": [
+    {
+      "id": "copilot",
+      "overrideWorkspaceSettings": true,
+      "values": [
+        {
+          "github.copilot.inlineSuggest.enable": false
+        },
+        {
+          "github.copilot.inlineSuggest.enable": true
+        }
+      ]
+    }
+  ],
+  "github.copilot.inlineSuggest.enable": true
+}

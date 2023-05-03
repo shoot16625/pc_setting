@@ -1,0 +1,56 @@
+// 既定値を上書きするには、このファイル内にキー バインドを挿入します
+[
+  {
+    "key": "ctrl+u",
+    "command": "editor.action.transformToUppercase",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+shift+u",
+    "command": "editor.action.transformToLowercase",
+    "when": "editorTextFocus"
+  },
+  // Toggle between terminal and editor focus
+  {
+    "key": "alt+9",
+    "command": "workbench.action.terminal.focus"
+  },
+  {
+    "key": "alt+9",
+    "command": "workbench.action.focusActiveEditorGroup",
+    "when": "terminalFocus"
+  },
+  {
+    "key": "ctrl+k",
+    "command": "deleteAllRight"
+  },
+  {
+    "key": "ctrl+shift+k",
+    "command": "deleteAllLeft"
+  },
+  {
+    "key": "alt+=",
+    "command": "editor.action.revealDefinition"
+  },
+  {
+    "key": "alt+-",
+    "command": "workbench.action.navigateBack"
+  },
+  {
+    "key": "alt+shift+-",
+    "command": "workbench.action.navigateForward"
+  },
+  {
+    "key": "shift+alt+g",
+    "command": "issue.copyGithubPermalink"
+  },
+  {
+    "key": "alt+g",
+    "command": "issue.copyGithubHeadLink"
+  },
+  {
+    "key": "alt+'",
+    "command": "settings.cycle.copilot",
+    "when": "editorFocus"
+  }
+]
