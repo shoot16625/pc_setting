@@ -1,0 +1,14 @@
+[core]
+	excludesfile = /Users/shuto.uchida/.gitignore_global
+	quotepath = false
+	autocrlf = false
+	ignorecase = false
+	editor = nano
+[ghq]
+    root = ~/Works
+[gpg]
+	program = gpg
+[push]
+	default = current
+[color]
+	ui = true
