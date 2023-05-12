@@ -2,17 +2,18 @@
 
 ## Applications
 
-| App              | Note                                          |
-| ---------------- | --------------------------------------------- |
-| MiddleClick      |                                               |
-| Mos              |                                               |
-| Karabiner        |                                               |
-| AltTab           |                                               |
-| RayCast          |                                               |
-| GPGTools         | https://blog.katsubemakito.net/git/github-gpg |
-| iTerm            |                                               |
-| Zsh, Prezto      |                                               |
-| Starship + zinit |                                               |
+| App              | Note                                            |
+| ---------------- | ----------------------------------------------- |
+| MiddleClick      |                                                 |
+| Mos              |                                                 |
+| Karabiner        |                                                 |
+| AltTab           |                                                 |
+| RayCast          |                                                 |
+| iTerm            |                                                 |
+| Zsh, Prezto      |                                                 |
+| Starship + zinit |                                                 |
+| GPGTools         | <https://blog.katsubemakito.net/git/github-gpg> |
+| Hadolint         |                                                 |
 
 ## Commands
 

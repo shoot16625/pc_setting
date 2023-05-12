@@ -4,11 +4,11 @@
   "workbench.editor.enablePreview": true,
   "workbench.editor.enablePreviewFromQuickOpen": true,
   "workbench.colorCustomizations": {
-    "diffEditor.insertedTextBackground": "#090b12",
-    "diffEditor.removedTextBackground": "#b205b57c",
+    "diffEditor.insertedTextBackground": "#2a297e",
+    "diffEditor.removedTextBackground": "#6c2f7b7c",
 
-    "diffEditor.insertedLineBackground": "#22336866",
-    "diffEditor.removedLineBackground": "#72336a66",
+    "diffEditor.insertedLineBackground": "#283d7b66",
+    "diffEditor.removedLineBackground": "#51214a66",
 
     "diffEditorGutter.insertedLineBackground": "#223368ff",
     "diffEditorGutter.removedLineBackground": "#72336aff",
@@ -20,37 +20,39 @@
     "*.msgpack": "default"
   },
   "workbench.list.smoothScrolling": true,
+  "workbench.colorTheme": "Default Dark+",
 
   "terminal.integrated.defaultProfile.osx": "zsh",
   "terminal.integrated.fontFamily": "MesloLGS NF",
   "terminal.integrated.copyOnSelection": true,
   "terminal.integrated.rightClickBehavior": "paste",
   "terminal.integrated.enableMultiLinePasteWarning": false,
+  "terminal.integrated.smoothScrolling": true,
   "vsicons.dontShowNewVersionMessage": true,
+  "window.newWindowDimensions": "inherit",
   "explorer.confirmDragAndDrop": false,
   "explorer.confirmDelete": false,
   "redhat.telemetry.enabled": true,
   "gitlens.statusBar.enabled": false,
-  "trailing-spaces.trimOnSave": true,
-  "trailing-spaces.syntaxIgnore": ["markdown"],
   "cSpell.maxNumberOfProblems": 5,
   "cSpell.numSuggestions": 4,
   "cSpell.enabled": false,
   "cSpell.showStatus": false,
-
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.renderWhitespace": "boundary",
   "editor.trimAutoWhitespace": false,
   "editor.insertSpaces": false,
   "editor.wordWrap": "on",
-  "editor.formatOnPaste": false,
-  "editor.formatOnSave": true,
-  "editor.formatOnType": false,
   "editor.cursorSmoothCaretAnimation": "on",
   "editor.smoothScrolling": true,
   "editor.inlineSuggest.enabled": true,
-
   "files.insertFinalNewline": true,
+
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": false,
+  "editor.formatOnType": false,
+  "trailing-spaces.trimOnSave": true,
+  "trailing-spaces.syntaxIgnore": ["markdown"],
 
   "prettier.printWidth": 120,
   "prettier.tabWidth": 2,
@@ -64,27 +66,18 @@
   "[css]": {
     "editor.formatOnSave": true
   },
-  "remark.format": {
-    "rules": {
-      "bullet": "-",
-      "listItemIndent": "1",
-      "fences": true,
-      "rule": "-",
-      "ruleSpaces": false
-    }
-  },
-  "[ignore]": {
-    "editor.formatOnSave": true,
-    "editor.defaultFormatter": "foxundermoon.shell-format"
-  },
   "[markdown]": {
     "editor.formatOnSave": true,
     "editor.quickSuggestions": {
       "comments": "on",
       "strings": "on",
       "other": "on"
+    },
+    "editor.codeActionsOnSave": {
+      "source.fixAll.markdownlint": true
     }
   },
+
   "[json]": {
     "editor.formatOnSave": true
   },
@@ -102,6 +95,14 @@
     "editor.formatOnSave": true,
     "editor.defaultFormatter": "foxundermoon.shell-format"
   },
+  "[dotenv]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  "[ignore]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
 
   "[dockerfile]": {
     "editor.formatOnSave": true,
@@ -113,16 +114,15 @@
   },
 
   "[go]": {
-    "editor.defaultFormatter": "golang.go",
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "golang.go"
   },
   "go.gopath": "/Users/shuto.uchida/go",
-  "go.formatTool": "goimports",
+  "go.formatTool": "gofmt",
   "go.lintTool": "golangci-lint",
   "go.toolsManagement.autoUpdate": true,
   "go.toolsEnvVars": {
     "GO111MODULE": "on"
-    // "CGO_CFLAGS_ALLOW": "-mfma",
   },
 
   "[python]": {
@@ -160,15 +160,12 @@
   "terraform.languageServer.indexing.ignoreDirectoryNames": ["modules", "providers"],
   "terraform.languageServer.enable": true,
 
-  "githubPullRequests.terminalLinksHandler": "github",
-  "githubPullRequests.pullBranch": "never",
-  "github-actions.org-features": true,
-  "jupyter.askForKernelRestart": false,
   "msg.dbEditor.connectionBrowser.showGreeting": false,
   "msg.editor.dbVersion": "8.0.30",
   "msg.editor.wordWrap": "off",
-  "terminal.integrated.smoothScrolling": true,
-  "window.newWindowDimensions": "inherit",
+
+  "githubPullRequests.terminalLinksHandler": "github",
+  "githubPullRequests.pullBranch": "never",
   "git.openRepositoryInParentFolders": "never",
   "github.copilot.enable": {
     "*": true,
@@ -180,14 +177,7 @@
     {
       "id": "copilot",
       "overrideWorkspaceSettings": true,
-      "values": [
-        {
-          "github.copilot.inlineSuggest.enable": false
-        },
-        {
-          "github.copilot.inlineSuggest.enable": true
-        }
-      ]
+      "values": [{ "github.copilot.inlineSuggest.enable": false }, { "github.copilot.inlineSuggest.enable": true }]
     }
   ],
   "github.copilot.inlineSuggest.enable": true
