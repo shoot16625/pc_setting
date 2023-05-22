@@ -47,13 +47,13 @@
   "editor.inlineSuggest.enabled": true,
   "files.insertFinalNewline": true,
 
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
   "editor.formatOnPaste": false,
   "editor.formatOnType": false,
   "trailing-spaces.trimOnSave": true,
   "trailing-spaces.syntaxIgnore": ["markdown"],
 
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "prettier.printWidth": 120,
   "prettier.tabWidth": 2,
   "prettier.useTabs": false,
@@ -90,9 +90,38 @@
     "editor.formatOnSave": true,
     "editor.defaultFormatter": "redhat.vscode-yaml"
   },
+  "yaml.customTags": [
+    "!And",
+    "!And sequence",
+    "!If",
+    "!If sequence",
+    "!Not",
+    "!Not sequence",
+    "!Equals",
+    "!Equals sequence",
+    "!Or",
+    "!Or sequence",
+    "!FindInMap",
+    "!FindInMap sequence",
+    "!Base64",
+    "!Join",
+    "!Join sequence",
+    "!Cidr",
+    "!Ref",
+    "!Sub",
+    "!Sub sequence",
+    "!GetAtt",
+    "!GetAZs",
+    "!ImportValue",
+    "!ImportValue sequence",
+    "!Select",
+    "!Select sequence",
+    "!Split",
+    "!Split sequence"
+  ],
 
   "[shellscript]": {
-    "editor.formatOnSave": true,
+    "editor.formatOnSave": false,
     "editor.defaultFormatter": "foxundermoon.shell-format"
   },
   "[dotenv]": {
@@ -113,6 +142,16 @@
     "editor.defaultFormatter": "ms-azuretools.vscode-docker"
   },
 
+  "[rust]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "statiolake.vscode-rustfmt"
+  },
+  "rust-analyzer.checkOnSave": true,
+  "rust-analyzer.check.command": "clippy",
+  "rust-analyzer.inlayHints.chainingHints.enable": false,
+  "rust-analyzer.inlayHints.parameterHints.enable": false,
+  "rust-analyzer.inlayHints.typeHints.enable": false,
+
   "[go]": {
     "editor.formatOnSave": true,
     "editor.defaultFormatter": "golang.go"
@@ -121,9 +160,9 @@
   "go.formatTool": "gofmt",
   "go.lintTool": "golangci-lint",
   "go.toolsManagement.autoUpdate": true,
-  "go.toolsEnvVars": {
-    "GO111MODULE": "on"
-  },
+  // "go.toolsEnvVars": {
+  //   "GO111MODULE": "on"
+  // },
 
   "[python]": {
     "editor.defaultFormatter": "ms-python.python",
@@ -180,5 +219,8 @@
       "values": [{ "github.copilot.inlineSuggest.enable": false }, { "github.copilot.inlineSuggest.enable": true }]
     }
   ],
-  "github.copilot.inlineSuggest.enable": true
+  "github.copilot.inlineSuggest.enable": true,
+  "aws.suppressPrompts": {
+    "codeWhispererConnectionExpired": true
+  }
 }

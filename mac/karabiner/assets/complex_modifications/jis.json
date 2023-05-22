@@ -551,6 +551,22 @@
               "modifiers": ["left_command"]
             }
           ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "modifiers": {
+              "mandatory": ["right_alt"],
+              "optional": ["any"]
+            },
+            "key_code": "tab"
+          },
+          "to": [
+            {
+              "key_code": "tab",
+              "modifiers": ["left_command"]
+            }
+          ]
         }
       ]
     },

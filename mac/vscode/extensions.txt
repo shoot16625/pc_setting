@@ -1,9 +1,11 @@
 4ops.terraform
 akamud.vscode-theme-onedark
+amazonwebservices.aws-toolkit-vscode
 apollographql.vscode-apollo
 Arjun.swagger-viewer
 astro-build.astro-vscode
 BazelBuild.vscode-bazel
+be5invis.toml
 Boto3typed.boto3-ide
 bradlc.vscode-tailwindcss
 christian-kohler.path-intellisense
@@ -60,6 +62,7 @@ pranaygp.vscode-css-peek
 redhat.vscode-yaml
 RomanPeshkov.vscode-text-tables
 rust-lang.rust-analyzer
+scala-lang.scala
 shardulm94.trailing-spaces
 shd101wyy.markdown-preview-enhanced
 statiolake.vscode-rustfmt

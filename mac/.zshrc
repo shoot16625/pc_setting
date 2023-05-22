@@ -168,6 +168,10 @@ alias sed='/opt/homebrew/bin/gsed'
 alias sleep='gsleep'
 alias sll='silicon --from-clipboard --to-clipboard -l'
 alias kc='kubectl'
+one-login() {
+  onelogin-aws-login -C "$1" --profile "$1"
+  awsctx use-context -p "$1"
+}
 
 alias dcud='docker compose up -d --build'
 alias dcd='docker compose down'
@@ -185,6 +189,7 @@ alias gbd='git branch -D'
 alias gc='git checkout'
 alias gcb='git switch -c'
 alias gp='git pull --prune'
+alias gpff='(){git fetch origin $1 | git reset --hard origin/$1}'
 alias gpush='git push -u origin HEAD'
 alias gca='git commit --amend --no-edit'
 alias gss='git stash save'
