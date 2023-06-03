@@ -213,6 +213,7 @@ pc() { # switch git branch
 # terraform
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /opt/homebrew/bin/terraform terraform
+export GODEBUG=asyncpreemptoff=1 # https://zenn.dev/bun913/articles/m1-mac-terraform-unstable
 
 # aws cli aut complete
 complete -C '/usr/local/bin/aws_completer' aws
@@ -250,3 +251,4 @@ export PATH="$HOME/bin:$PATH"
 
 # gh
 eval "$(gh completion -s zsh)"
+

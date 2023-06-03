@@ -121,7 +121,7 @@
   ],
 
   "[shellscript]": {
-    "editor.formatOnSave": false,
+    "editor.formatOnSave": true,
     "editor.defaultFormatter": "foxundermoon.shell-format"
   },
   "[dotenv]": {
@@ -140,6 +140,15 @@
   "[dockercompose]": {
     "editor.formatOnSave": true,
     "editor.defaultFormatter": "ms-azuretools.vscode-docker"
+  },
+
+  "[sql]": {
+    "editor.formatOnSave": false,
+    "editor.defaultFormatter": "inferrinizzard.prettier-sql-vscode"
+  },
+  "[mysql]": {
+    "editor.formatOnSave": false,
+    "editor.defaultFormatter": "inferrinizzard.prettier-sql-vscode"
   },
 
   "[rust]": {
@@ -198,6 +207,10 @@
   },
   "terraform.languageServer.indexing.ignoreDirectoryNames": ["modules", "providers"],
   "terraform.languageServer.enable": true,
+  "[hcl]": {
+    "editor.defaultFormatter": "fredwangwang.vscode-hcl-format",
+    "editor.formatOnSave": true
+  },
 
   "msg.dbEditor.connectionBrowser.showGreeting": false,
   "msg.editor.dbVersion": "8.0.30",

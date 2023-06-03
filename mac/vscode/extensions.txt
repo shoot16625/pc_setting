@@ -1,3 +1,4 @@
+42Crunch.vscode-openapi
 4ops.terraform
 akamud.vscode-theme-onedark
 amazonwebservices.aws-toolkit-vscode
@@ -20,6 +21,7 @@ exiasr.hadolint
 folke.vscode-monorepo-workspace
 formulahendry.auto-rename-tag
 foxundermoon.shell-format
+fredwangwang.vscode-hcl-format
 GitHub.copilot
 GitHub.copilot-labs
 GitHub.remotehub
@@ -27,15 +29,20 @@ github.vscode-github-actions
 GitHub.vscode-pull-request-github
 golang.go
 Gruntfuggly.todo-tree
+hashicorp.hcl
 hashicorp.terraform
 hoovercj.vscode-settings-cycler
 huber-baste.msgpack
 humao.rest-client
 IBM.output-colorizer
+inferrinizzard.prettier-sql-vscode
 jeff-hykin.polacode-2019
 jrebocho.vscode-random
+lea21st.vscode-sql-formatter
 mechatroner.rainbow-csv
+mermade.openapi-lint
 mikestead.dotenv
+mindaro-dev.file-downloader
 mosapride.zenkaku
 ms-azuretools.vscode-docker
 ms-kubernetes-tools.vscode-kubernetes-tools
@@ -56,6 +63,7 @@ ms-vscode.cpptools-themes
 ms-vscode.makefile-tools
 ms-vscode.remote-repositories
 msysyamamoto.vscode-digdag
+nmrmsys.vscode-sql-formatter-mod
 oderwat.indent-rainbow
 Oracle.mysql-shell-for-vs-code
 pranaygp.vscode-css-peek
