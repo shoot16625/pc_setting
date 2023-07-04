@@ -1,43 +1,19 @@
 {
   "workbench.startupEditor": "none",
-  "workbench.iconTheme": "vscode-icons",
   "workbench.editor.enablePreview": true,
   "workbench.editor.enablePreviewFromQuickOpen": true,
-  "workbench.colorCustomizations": {
-    "diffEditor.insertedTextBackground": "#2a297e",
-    "diffEditor.removedTextBackground": "#6c2f7b7c",
-
-    "diffEditor.insertedLineBackground": "#283d7b66",
-    "diffEditor.removedLineBackground": "#51214a66",
-
-    "diffEditorGutter.insertedLineBackground": "#223368ff",
-    "diffEditorGutter.removedLineBackground": "#72336aff",
-
-    "diffEditorOverview.insertedForeground": "#0296b4",
-    "diffEditorOverview.removedForeground": "#82059e"
-  },
-  "workbench.editorAssociations": {
-    "*.msgpack": "default"
-  },
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.colorTheme": "One Dark Pro",
   "workbench.list.smoothScrolling": true,
-  "workbench.colorTheme": "Default Dark+",
-
-  "terminal.integrated.defaultProfile.osx": "zsh",
-  "terminal.integrated.fontFamily": "MesloLGS NF",
+  "window.newWindowDimensions": "inherit",
+  "files.insertFinalNewline": true,
+  "terminal.integrated.fontFamily": "FiraCode Nerd Font",
   "terminal.integrated.copyOnSelection": true,
   "terminal.integrated.rightClickBehavior": "paste",
   "terminal.integrated.enableMultiLinePasteWarning": false,
   "terminal.integrated.smoothScrolling": true,
-  "vsicons.dontShowNewVersionMessage": true,
-  "window.newWindowDimensions": "inherit",
   "explorer.confirmDragAndDrop": false,
   "explorer.confirmDelete": false,
-  "redhat.telemetry.enabled": true,
-  "gitlens.statusBar.enabled": false,
-  "cSpell.maxNumberOfProblems": 5,
-  "cSpell.numSuggestions": 4,
-  "cSpell.enabled": false,
-  "cSpell.showStatus": false,
   "editor.renderWhitespace": "boundary",
   "editor.trimAutoWhitespace": false,
   "editor.insertSpaces": false,
@@ -45,114 +21,87 @@
   "editor.cursorSmoothCaretAnimation": "on",
   "editor.smoothScrolling": true,
   "editor.inlineSuggest.enabled": true,
-  "files.insertFinalNewline": true,
-
+  "editor.tabSize": 4,
+  "trailing-spaces.trimOnSave": true,
+  "trailing-spaces.syntaxIgnore": ["markdown"],
+  "gitlens.statusBar.enabled": false,
+  "redhat.telemetry.enabled": true,
   "editor.formatOnSave": true,
   "editor.formatOnPaste": false,
   "editor.formatOnType": false,
-  "trailing-spaces.trimOnSave": true,
-  "trailing-spaces.syntaxIgnore": ["markdown"],
-
+  "formattingToggle.affects": ["editor.formatOnSave"],
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "prettier.printWidth": 120,
   "prettier.tabWidth": 2,
   "prettier.useTabs": false,
-  // "prettier.singleQuote": true,
-  // "prettier.jsxSingleQuote": true,
-
-  "[html]": {
-    "editor.formatOnSave": true
+  "stylelint.validate": ["css", "scss"],
+  "todohighlight.keywords": ["NOTE:"],
+  "[html]": {},
+  "[xml]": {
+    "editor.defaultFormatter": "DotJoshJohnson.xml"
   },
   "[css]": {
-    "editor.formatOnSave": true
+    "editor.codeActionsOnSave": {
+      "source.fixAll.stylelint": true
+    }
+  },
+  "[scss]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll.stylelint": true
+    }
+  },
+  "[javascript]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+    }
+  },
+  "[typescript]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+    }
   },
   "[markdown]": {
-    "editor.formatOnSave": true,
-    "editor.quickSuggestions": {
-      "comments": "on",
-      "strings": "on",
-      "other": "on"
-    },
     "editor.codeActionsOnSave": {
       "source.fixAll.markdownlint": true
     }
   },
-
-  "[json]": {
-    "editor.formatOnSave": true
+  "markdownlint.config": {
+    "line-length": false, // MD013: 1文の最大文字数を制限しない
+    "no-trailing-punctuation": false, // MD026: 見出しに.,;:が入ることを許容
+    "no-inline-html": false, // MD033: HTML記述を許容
+    "no-bare-urls": false // MD034: URLそのままの表記を許容
   },
-
+  "[json]": {},
   "[yaml]": {
-    "editor.formatOnSave": true,
     "editor.defaultFormatter": "redhat.vscode-yaml"
   },
   "[helm]": {
-    "editor.formatOnSave": true,
     "editor.defaultFormatter": "redhat.vscode-yaml"
   },
-  "yaml.customTags": [
-    "!And",
-    "!And sequence",
-    "!If",
-    "!If sequence",
-    "!Not",
-    "!Not sequence",
-    "!Equals",
-    "!Equals sequence",
-    "!Or",
-    "!Or sequence",
-    "!FindInMap",
-    "!FindInMap sequence",
-    "!Base64",
-    "!Join",
-    "!Join sequence",
-    "!Cidr",
-    "!Ref",
-    "!Sub",
-    "!Sub sequence",
-    "!GetAtt",
-    "!GetAZs",
-    "!ImportValue",
-    "!ImportValue sequence",
-    "!Select",
-    "!Select sequence",
-    "!Split",
-    "!Split sequence"
-  ],
-
   "[shellscript]": {
-    "editor.formatOnSave": true,
     "editor.defaultFormatter": "foxundermoon.shell-format"
   },
   "[dotenv]": {
-    "editor.formatOnSave": true,
     "editor.defaultFormatter": "foxundermoon.shell-format"
   },
   "[ignore]": {
-    "editor.formatOnSave": true,
     "editor.defaultFormatter": "foxundermoon.shell-format"
   },
-
   "[dockerfile]": {
-    "editor.formatOnSave": true,
     "editor.defaultFormatter": "ms-azuretools.vscode-docker"
   },
   "[dockercompose]": {
-    "editor.formatOnSave": true,
     "editor.defaultFormatter": "ms-azuretools.vscode-docker"
   },
-
+  "Prettier-SQL.ignoreTabSettings": true,
   "[sql]": {
-    "editor.formatOnSave": false,
-    "editor.defaultFormatter": "inferrinizzard.prettier-sql-vscode"
+    "editor.defaultFormatter": "inferrinizzard.prettier-sql-vscode",
+    "editor.formatOnSave": false
   },
   "[mysql]": {
-    "editor.formatOnSave": false,
     "editor.defaultFormatter": "inferrinizzard.prettier-sql-vscode"
   },
-
   "[rust]": {
-    "editor.formatOnSave": true,
     "editor.defaultFormatter": "statiolake.vscode-rustfmt"
   },
   "rust-analyzer.checkOnSave": true,
@@ -160,80 +109,26 @@
   "rust-analyzer.inlayHints.chainingHints.enable": false,
   "rust-analyzer.inlayHints.parameterHints.enable": false,
   "rust-analyzer.inlayHints.typeHints.enable": false,
-
   "[go]": {
-    "editor.formatOnSave": true,
     "editor.defaultFormatter": "golang.go"
   },
   "go.gopath": "/Users/shuto.uchida/go",
   "go.formatTool": "gofmt",
   "go.lintTool": "golangci-lint",
   "go.toolsManagement.autoUpdate": true,
-  // "go.toolsEnvVars": {
-  //   "GO111MODULE": "on"
-  // },
-
-  "[python]": {
-    "editor.defaultFormatter": "ms-python.python",
-    "editor.tabSize": 4,
-    "editor.insertSpaces": true,
-    "editor.formatOnSave": true,
-    "editor.codeActionsOnSave": {
-      "source.organizeImports": true
-    },
-    "editor.formatOnType": true
-  },
-  "python.languageServer": "Pylance",
-  "python.defaultInterpreterPath": "python3",
-  "python.envFile": "${workspaceFolder}/.venv",
-  "python.analysis.completeFunctionParens": true,
-  "python.formatting.provider": "black",
-  "python.linting.enabled": true,
-  "python.linting.pylintEnabled": false,
-  "python.linting.lintOnSave": true,
-  "python.linting.mypyEnabled": true,
-  "python.linting.flake8Enabled": true,
-  "python.linting.flake8Args": ["--max-line-length=120", "--ignore=E203,W503,W504"],
-
   "[terraform]": {
-    "editor.defaultFormatter": "hashicorp.terraform",
-    "editor.formatOnSave": true,
-    "editor.formatOnSaveMode": "file"
+    "editor.defaultFormatter": "hashicorp.terraform"
   },
   "[terraform-vars]": {
-    "editor.defaultFormatter": "hashicorp.terraform",
-    "editor.formatOnSave": true,
-    "editor.formatOnSaveMode": "file"
+    "editor.defaultFormatter": "hashicorp.terraform"
   },
   "terraform.languageServer.indexing.ignoreDirectoryNames": ["modules", "providers"],
   "terraform.languageServer.enable": true,
-  "[hcl]": {
-    "editor.defaultFormatter": "fredwangwang.vscode-hcl-format",
-    "editor.formatOnSave": true
-  },
-
-  "msg.dbEditor.connectionBrowser.showGreeting": false,
-  "msg.editor.dbVersion": "8.0.30",
-  "msg.editor.wordWrap": "off",
-
-  "githubPullRequests.terminalLinksHandler": "github",
-  "githubPullRequests.pullBranch": "never",
-  "git.openRepositoryInParentFolders": "never",
   "github.copilot.enable": {
     "*": true,
-    "yaml": true,
-    "plaintext": true,
-    "markdown": true
+    "plaintext": false,
+    "markdown": true,
+    "scminput": false
   },
-  "settings.cycle": [
-    {
-      "id": "copilot",
-      "overrideWorkspaceSettings": true,
-      "values": [{ "github.copilot.inlineSuggest.enable": false }, { "github.copilot.inlineSuggest.enable": true }]
-    }
-  ],
-  "github.copilot.inlineSuggest.enable": true,
-  "aws.suppressPrompts": {
-    "codeWhispererConnectionExpired": true
-  }
+  "githubPullRequests.pullBranch": "never"
 }

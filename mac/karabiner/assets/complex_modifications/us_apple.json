@@ -1,5 +1,5 @@
 {
-    "title": "My US Settings",
+    "title": "My US Apple Settings",
     "rules": [
         {
             "description": "left_commandを単体で押したときに、英数キーを送信",

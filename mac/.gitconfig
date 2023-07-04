@@ -1,3 +1,6 @@
+[url "github:"]
+    InsteadOf = https://github.com/
+    InsteadOf = git@github.com:
 [core]
 	excludesfile = /Users/shuto.uchida/.gitignore_global
 	quotepath = false
@@ -12,3 +15,7 @@
 	default = current
 [color]
 	ui = true
+[commit]
+	gpgsign = true
+[tag]
+	gpgsign = true

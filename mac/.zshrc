@@ -1,27 +1,65 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+### Added by Zinit's installer
+if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
+    print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
+    command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
+    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git" && \
+        print -P "%F{33} %F{34}Installation successful.%f%b" || \
+        print -P "%F{160} The clone has failed.%f%b"
 fi
 
-# Source Prezto.
-if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
-  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+
+# Load a few important annexes, without Turbo
+# (this is currently required for annexes)
+zinit light-mode for \
+    zdharma-continuum/zinit-annex-as-monitor \
+    zdharma-continuum/zinit-annex-bin-gem-node \
+    zdharma-continuum/zinit-annex-patch-dl \
+    zdharma-continuum/zinit-annex-rust
+
+### End of Zinit's installer chunk
+
+zinit light zsh-users/zsh-syntax-highlighting
+zinit light zsh-users/zsh-autosuggestions
+zinit light zsh-users/zsh-completions
+zinit light mollifier/anyframe
+zinit light reegnz/jq-zsh-plugin
+zinit light paulirish/git-open
+
+
+eval "$(starship init zsh)"
+eval "$(direnv hook zsh)"
+
+autoload -U +X bashcompinit && bashcompinit
+autoload -Uz compinit && compinit
+if type brew &>/dev/null; then
+    FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
 fi
+complete -C '/opt/homebrew/bin/aws_completer' aws
+complete -o nospace -C /opt/homebrew/bin/terraform terraform
+eval "$(gh completion -s zsh)"
+# 補完で小文字でも大文字にマッチさせる
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+# 補完候補を詰めて表示
+setopt list_packed
+# 補完候補一覧をカラー表示
+autoload colors
+zstyle ':completion:*' list-colors ''
+# コマンドのスペルを訂正
+setopt correct
+# glob表現無視
+setopt +o nomatch
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-eval "$(zoxide init zsh)"
-
+# fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!**/.git/*"'
 export FZF_DEFAULT_OPTS="
     --height 80% --reverse --border=sharp --margin=0,1
     --prompt='☆ ' --color=light
 "
-
 # for finding files in current directories
 export FZF_CTRL_T_COMMAND='rg --files --hidden --follow --glob "!**/.git/*"'
 export FZF_CTRL_T_OPTS="
@@ -29,226 +67,157 @@ export FZF_CTRL_T_OPTS="
     --preview-window=right:60%
 "
 
-# Customize to your needs...
 
-# ctrl + r : コマンド履歴
-function peco-history-selection() {
-    BUFFER=$(history 1 | sort -k1,1nr | perl -ne 'BEGIN { my @lines = (); } s/^\s*\d+\*?\s*//; $in=$_; if (!(grep {$in eq $_} @lines)) { push(@lines, $in); print $in; }' | peco --query "$LBUFFER")
-    CURSOR=${#BUFFER}
-    zle reset-prompt
-}
-zle -N peco-history-selection
-bindkey '^R' peco-history-selection
+# ビープ音の停止
+setopt no_beep
+# ビープ音の停止(補完時)
+setopt nolistbeep
+# 同時に起動したzshの間で履歴を共有する
+setopt share_history
 
-# ctrl + f : 過去に移動したことのあるディレクトリを選択できるようにする。
-if [[ -n $(echo ${^fpath}/chpwd_recent_dirs(N)) && -n $(echo ${^fpath}/cdr(N)) ]]; then
-    autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
-    add-zsh-hook chpwd chpwd_recent_dirs
-    zstyle ':completion:*' recent-dirs-insert both
-    zstyle ':chpwd:*' recent-dirs-default true
-    zstyle ':chpwd:*' recent-dirs-max 1000
-    zstyle ':chpwd:*' recent-dirs-file "$HOME/.cache/chpwd-recent-dirs"
-fi
-function peco-cdr () {
-    local selected_dir="$(cdr -l | sed 's/^[0-9]* *//' | peco --prompt="cdr >" --query "$LBUFFER")"
-    if [ -n "$selected_dir" ]; then
-        BUFFER="cd ${selected_dir}"
-        zle accept-line
-    fi
-}
-zle -N peco-cdr
-bindkey '^f' peco-cdr
 
-# ctrl + g :  peco + ghq
-function peco-ghq () {
-  local selected_dir=$(ghq list -p | peco --query "$LBUFFER")
-  if [ -n "$selected_dir" ]; then
-    BUFFER="cd ${selected_dir}"
-    zle accept-line
-  fi
-  zle clear-screen
-}
-zle -N peco-ghq
-bindkey '^g' peco-ghq
+# brew
+export HOMEBREW_NO_AUTO_UPDATE=1
+# rust
+export PATH=$PATH:$HOME/.cargo/bin
+# go
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
+# volta
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
 
-# ctrl + O : open git repository
-function open-git-remote() {
-  git rev-parse --git-dir >/dev/null 2>&1
-  if [[ $? == 0 ]]; then
-    git config --get remote.origin.url | sed -e 's/git@github.com:/https:\/\/github.com\//g' | xargs open
-  else
-    echo ".git not found.\n"
-  fi
-}
-zle -N open-git-remote
-bindkey '^O' open-git-remote
 
-# fd - cd to selected directory
-# https://qiita.com/kamykn/items/aa9920f07487559c0c7e
-fd() {
-  local dir
-  dir=$(find ${1:-.} -path '*/\.*' -prune \
-                  -o -type d -print 2> /dev/null | fzf +m) &&
-  cd "$dir"
-}
+# Ctrl+x -> d
+# peco でディレクトリの移動履歴を表示
+bindkey '^xd' anyframe-widget-cdr
+autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
+add-zsh-hook chpwd chpwd_recent_dirs
 
-# プロセスをkill
-fkill() {
-  local pid
-  pid=$(ps -ef | sed 1d | fzf -m | awk '{print $2}')
+# Ctrl+x -> r
+# peco でコマンドの実行履歴を表示
+bindkey '^xr' anyframe-widget-execute-history
 
-  if [ "x$pid" != "x" ]
-  then
-    echo $pid | xargs kill -${1:-9}
-  fi
-}
+# Ctrl+x -> b
+# peco でGitブランチを表示して切替え
+bindkey '^xb' anyframe-widget-checkout-git-branch
 
-# fs - switch git branch including remote branches
-# ref: https://qiita.com/kamykn/items/aa9920f07487559c0c7e
-fs() {
-  local branches branch
-  branches=$(git branch -a --sort=-authordate | grep -v -e '->' -e '*' | perl -pe 's/^\h+//g' | perl -pe 's#^remotes/origin/##' | perl -nle 'print if !$c{$_}++') &&
-  branch=$(echo "$branches" | fzf +m) &&
-  git switch "$branch"
-}
+# Ctrl+x -> g
+# GHQでクローンしたGitリポジトリを表示
+bindkey '^xg' anyframe-widget-cd-ghq-repository
 
-# flog - git commit browser
-# ref: https://qiita.com/kamykn/items/aa9920f07487559c0c7e
-flog() {
-  git log --graph --color=always \
-      --format="%C(auto)%h%d %s %C(#C0C0C0)%C(bold)%cr" "$@" |
-  fzf --ansi --no-sort --reverse --tiebreak=index --bind=ctrl-s:toggle-sort \
-      --bind "ctrl-m:execute:
-              (grep -o '[a-f0-9]\{7\}' | head -1 |
-              xargs -I % sh -c 'git show --color=always % | less -R') << 'FZF-EOF'
-              {}
-              FZF-EOF
-              "
-}
+# Ctrl+x -> j
+bindkey '^xj' jq-complete
 
-# fad: git add / -p をインタラクティブに．Ctrl-p で -p, Enter で add
-# https://qiita.com/reviry/items/e798da034955c2af84c5
-fad() {
-  local out q n addfiles
-  while out=$(
-      git status --short |
-      awk '{if (substr($0,2,1) !~ / /) print $2}' |
-      fzf-tmux --multi --exit-0 --expect=ctrl-p); do
-    q=$(head -1 <<< "$out")
-    n=$[$(wc -l <<< "$out") - 1]
-    addfiles=(`echo $(tail "-$n" <<< "$out")`)
-    [[ -z "$addfiles" ]] && continue
-    if [ "$q" = ctrl-p ]; then
-      git add -p $addfiles
-    else
-      git add $addfiles
-    fi
-  done
-}
 
-# fzfでdockerコンテナに入る
-# ref: https://momozo.tech/2021/03/10/fzf%E3%81%A7zsh%E3%82%BF%E3%83%BC%E3%83%9F%E3%83%8A%E3%83%AB%E4%BD%9C%E6%A5%AD%E3%82%92%E5%8A%B9%E7%8E%87%E5%8C%96/
-fde() {
-  local cid
-  cid=$(docker ps | sed 1d | fzf -q "$1" | awk '{print $1}')
-  [ -n "$cid" ] && docker exec -it "$cid" /bin/bash
-}
-
-# fzfでdockerのログを取得
-# ref: https://momozo.tech/2021/03/10/fzf%E3%81%A7zsh%E3%82%BF%E3%83%BC%E3%83%9F%E3%83%8A%E3%83%AB%E4%BD%9C%E6%A5%AD%E3%82%92%E5%8A%B9%E7%8E%87%E5%8C%96/
-fdl() {
-  local cid
-  cid=$(docker ps -a | sed 1d | fzf -q "$1" | awk '{print $1}')
-  [ -n "$cid" ] && docker logs -f --tail=200 "$cid"
-}
-
+alias ls=exa
+alias cat=bat
 alias date='gdate'
 alias cp='/opt/homebrew/bin/gcp'
 alias sed='/opt/homebrew/bin/gsed'
 alias sleep='gsleep'
 alias sll='silicon --from-clipboard --to-clipboard -l'
 alias kc='kubectl'
-one-login() {
-  onelogin-aws-login -C "$1" --profile "$1"
-  awsctx use-context -p "$1"
-}
+alias tf='terraform'
 
+# docker
 alias dcud='docker compose up -d --build'
 alias dcd='docker compose down'
 alias dcr='docker compose restart'
 alias drmca='docker rm `docker ps -f "status=exited" -q`'
 alias drmia='docker rmi `docker images -q`'
 drmi() {
-  local cid
-  cid=$(docker images | sed 1d | fzf -m -q "$1" | awk '{print $3}')
-  [ -n "$cid" ] && echo $cid | xargs docker rmi -f
+    local cid
+    cid=$(docker images | sed 1d | fzf -m -q "$1" | awk '{print $3}')
+    [ -n "$cid" ] && echo $cid | xargs docker rmi -f
 }
 
+# git
 alias gap='git add -p'
 alias gbd='git branch -D'
 alias gc='git checkout'
-alias gcb='git switch -c'
+alias gsc='git switch -c'
 alias gp='git pull --prune'
 alias gpff='(){git fetch origin $1 | git reset --hard origin/$1}'
 alias gpush='git push -u origin HEAD'
 alias gca='git commit --amend --no-edit'
+alias gs='git status'
 alias gss='git stash save'
 alias gsa='git stash apply'
+alias gopen='git open'
 alias glog='git log --oneline --decorate --graph --all'
-alias del_branch='git branch --all | grep -vE "develop|development|staging|master|main|remotes" | xargs -I % git branch -D %'
+alias del_branch='git branch --all | grep -vE "develop|development|dev|staging|stg|master|main|remotes|demo" | xargs -I % git branch -D %'
 alias git_reset='git reset --soft HEAD~ && git reset HEAD'
 gcom() {
-  echo $@ | xargs -I % git commit -S -m "%"
-}
-pc() { # switch git branch
-  git branch -a --sort=-authordate |
-    grep -v -e '->' -e '*' |
-    perl -pe 's/^\h+//g' |
-    perl -pe 's#^remotes/origin/##' |
-    perl -nle 'print if !$c{$_}++' |
-    peco |
-    xargs git switch
+    echo $@ | xargs -I % git commit -S -m "%"
 }
 
-# terraform
-autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /opt/homebrew/bin/terraform terraform
-export GODEBUG=asyncpreemptoff=1 # https://zenn.dev/bun913/articles/m1-mac-terraform-unstable
+# fd - cd to selected directory
+# https://qiita.com/kamykn/items/aa9920f07487559c0c7e
+fd() {
+    local dir
+    dir=$(find ${1:-.} -path '*/\.*' -prune \
+        -o -type d -print 2> /dev/null | fzf +m) &&
+    cd "$dir"
+}
 
-# aws cli aut complete
-complete -C '/usr/local/bin/aws_completer' aws
+# プロセスをkill
+fkill() {
+    local pid
+    pid=$(ps -ef | sed 1d | fzf -m | awk '{print $2}')
 
-# python
-export PATH=$PATH:$HOME/Library/Python/3.9/bin
-eval "$(pyenv init -)"
+    if [ "x$pid" != "x" ]
+    then
+        echo $pid | xargs kill -${1:-9}
+    fi
+}
 
-# go
-export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
+# flog - git commit browser
+# ref: https://qiita.com/kamykn/items/aa9920f07487559c0c7e
+flog() {
+    git log --graph --color=always \
+        --format="%C(auto)%h%d %s %C(#C0C0C0)%C(bold)%cr" "$@" |
+    fzf --ansi --no-sort --reverse --tiebreak=index --bind=ctrl-s:toggle-sort \
+        --bind "ctrl-m:execute:
+            (grep -o '[a-f0-9]\{7\}' | head -1 |
+            xargs -I % sh -c 'git show --color=always % | less -R') << 'FZF-EOF'
+            {}
+            FZF-EOF
+            "
+}
 
-# nodejs
-export PATH=/opt/homebrew/var/nodebrew/current/bin:$PATH
+# fad: git add / -p をインタラクティブに．Ctrl-p で -p, Enter で add
+# https://qiita.com/reviry/items/e798da034955c2af84c5
+fad() {
+    local out q n addfiles
+    while out=$(
+        git status --short |
+        awk '{if (substr($0,2,1) !~ / /) print $2}' |
+        fzf-tmux --multi --exit-0 --expect=ctrl-p); do
+    q=$(head -1 <<< "$out")
+    n=$[$(wc -l <<< "$out") - 1]
+    addfiles=(`echo $(tail "-$n" <<< "$out")`)
+    [[ -z "$addfiles" ]] && continue
+    if [ "$q" = ctrl-p ]; then
+        git add -p $addfiles
+    else
+        git add $addfiles
+    fi
+    done
+}
 
-# brew
-export HOMEBREW_NO_AUTO_UPDATE=1
+# fzfでdockerコンテナに入る
+# ref: https://momozo.tech/2021/03/10/fzf%E3%81%A7zsh%E3%82%BF%E3%83%BC%E3%83%9F%E3%83%8A%E3%83%AB%E4%BD%9C%E6%A5%AD%E3%82%92%E5%8A%B9%E7%8E%87%E5%8C%96/
+fde() {
+    local cid
+    cid=$(docker ps | sed 1d | fzf -q "$1" | awk '{print $1}')
+    [ -n "$cid" ] && docker exec -it "$cid" /bin/bash
+}
 
-# rust
-export PATH=$PATH:$HOME/.cargo/bin
-
-# pnpm
-export PNPM_HOME="/Users/shuto.uchida/Library/pnpm"
-export PATH="$PNPM_HOME:$PATH"
-# pnpm end
-
-# openssl
-export PATH="/opt/homebrew/opt/openssl@3/bin:$PATH"
-export LDFLAGS="-L/opt/homebrew/opt/openssl@3/lib"
-export CPPFLAGS="-I/opt/homebrew/opt/openssl@3/include"
-export PKG_CONFIG_PATH="/opt/homebrew/opt/openssl@3/lib/pkgconfig"
-export GRPC_PYTHON_BUILD_SYSTEM_OPENSSL=1
-export GRPC_PYTHON_BUILD_SYSTEM_ZLIB=1
-export PATH="$HOME/bin:$PATH"
-
-# gh
-eval "$(gh completion -s zsh)"
-
+# fzfでdockerのログを取得
+# ref: https://momozo.tech/2021/03/10/fzf%E3%81%A7zsh%E3%82%BF%E3%83%BC%E3%83%9F%E3%83%8A%E3%83%AB%E4%BD%9C%E6%A5%AD%E3%82%92%E5%8A%B9%E7%8E%87%E5%8C%96/
+fdl() {
+    local cid
+    cid=$(docker ps -a | sed 1d | fzf -q "$1" | awk '{print $1}')
+    [ -n "$cid" ] && docker logs -f --tail=200 "$cid"
+}

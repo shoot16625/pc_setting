@@ -20,14 +20,6 @@
     "command": "workbench.action.focusActiveEditorGroup",
     "when": "terminalFocus"
   },
-  // {
-  //   "key": "ctrl+k",
-  //   "command": "deleteAllRight"
-  // },
-  // {
-  //   "key": "ctrl+shift+k",
-  //   "command": "deleteAllLeft"
-  // },
   {
     "key": "alt+=",
     "command": "editor.action.revealDefinition"
@@ -41,16 +33,34 @@
     "command": "workbench.action.navigateForward"
   },
   {
-    "key": "shift+alt+g",
+    "key": "alt+g",
+    "command": "issue.copyGithubHeadLink"
+  },
+  {
+    "key": "alt+shift+g",
     "command": "issue.copyGithubPermalink"
   },
   {
-    "key": "alt+g",
-    "command": "issue.copyGithubHeadLink"
+    "key": "alt+cmd+ctrl+n",
+    "command": "explorer.newFile"
+  },
+  {
+    "key": "alt+cmd+ctrl+shift+n",
+    "command": "explorer.newFolder"
   },
   {
     "key": "alt+'",
     "command": "settings.cycle.copilot",
     "when": "editorFocus"
+  },
+  {
+    "key": "alt+cmd+ctrl+e",
+    "command": "workbench.view.explorer",
+    "when": "viewContainer.workbench.view.explorer.enabled"
+  },
+  {
+    "key": "shift+alt+p",
+    "command": "-swagger.preview",
+    "when": "editorTextFocus"
   }
 ]
