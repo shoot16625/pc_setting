@@ -7,6 +7,8 @@
   "workbench.list.smoothScrolling": true,
   "window.newWindowDimensions": "inherit",
   "files.insertFinalNewline": true,
+  "files.associations": {},
+
   "terminal.integrated.fontFamily": "FiraCode Nerd Font",
   "terminal.integrated.copyOnSelection": true,
   "terminal.integrated.rightClickBehavior": "paste",
@@ -14,6 +16,7 @@
   "terminal.integrated.smoothScrolling": true,
   "explorer.confirmDragAndDrop": false,
   "explorer.confirmDelete": false,
+
   "editor.renderWhitespace": "boundary",
   "editor.trimAutoWhitespace": false,
   "editor.insertSpaces": false,
@@ -22,13 +25,15 @@
   "editor.smoothScrolling": true,
   "editor.inlineSuggest.enabled": true,
   "editor.tabSize": 4,
-  "trailing-spaces.trimOnSave": true,
-  "trailing-spaces.syntaxIgnore": ["markdown"],
-  "gitlens.statusBar.enabled": false,
-  "redhat.telemetry.enabled": true,
   "editor.formatOnSave": true,
   "editor.formatOnPaste": false,
   "editor.formatOnType": false,
+  "trailing-spaces.trimOnSave": true,
+  "trailing-spaces.syntaxIgnore": ["markdown"],
+  "gitlens.statusBar.enabled": false,
+  "githubPullRequests.pullBranch": "never",
+  "githubPullRequests.terminalLinksHandler": "github",
+  "redhat.telemetry.enabled": true,
   "formattingToggle.affects": ["editor.formatOnSave"],
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "prettier.printWidth": 120,
@@ -36,31 +41,48 @@
   "prettier.useTabs": false,
   "stylelint.validate": ["css", "scss"],
   "todohighlight.keywords": ["NOTE:"],
-  "[html]": {},
+  "cSpell.enabled": false,
+
+  "[html]": {
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true
+  },
   "[xml]": {
-    "editor.defaultFormatter": "DotJoshJohnson.xml"
+    "editor.defaultFormatter": "DotJoshJohnson.xml",
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true
   },
   "[css]": {
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
     "editor.codeActionsOnSave": {
       "source.fixAll.stylelint": true
     }
   },
   "[scss]": {
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
     "editor.codeActionsOnSave": {
       "source.fixAll.stylelint": true
     }
   },
   "[javascript]": {
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
     "editor.codeActionsOnSave": {
       "source.fixAll.eslint": true
     }
   },
   "[typescript]": {
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
     "editor.codeActionsOnSave": {
       "source.fixAll.eslint": true
     }
   },
   "[markdown]": {
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
     "editor.codeActionsOnSave": {
       "source.fixAll.markdownlint": true
     }
@@ -71,12 +93,20 @@
     "no-inline-html": false, // MD033: HTML記述を許容
     "no-bare-urls": false // MD034: URLそのままの表記を許容
   },
-  "[json]": {},
-  "[yaml]": {
-    "editor.defaultFormatter": "redhat.vscode-yaml"
+  "[json]": {
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true
   },
-  "[helm]": {
-    "editor.defaultFormatter": "redhat.vscode-yaml"
+  "[yaml]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml",
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "editor.autoIndent": "keep"
+  },
+  "[github-actions-workflow]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "editor.autoIndent": "keep"
   },
   "[shellscript]": {
     "editor.defaultFormatter": "foxundermoon.shell-format"
@@ -113,22 +143,35 @@
     "editor.defaultFormatter": "golang.go"
   },
   "go.gopath": "/Users/shuto.uchida/go",
-  "go.formatTool": "gofmt",
+  "go.formatTool": "goimports", // goplsで無視されてるかも
   "go.lintTool": "golangci-lint",
+  "gopls": {
+    "formatting.local": "github.com/kiva-corp",
+    "usePlaceholders": false
+  },
   "go.toolsManagement.autoUpdate": true,
   "[terraform]": {
-    "editor.defaultFormatter": "hashicorp.terraform"
+    "editor.defaultFormatter": "hashicorp.terraform",
+    "editor.tabSize": 2
   },
   "[terraform-vars]": {
-    "editor.defaultFormatter": "hashicorp.terraform"
+    "editor.defaultFormatter": "hashicorp.terraform",
+    "editor.tabSize": 2
   },
   "terraform.languageServer.indexing.ignoreDirectoryNames": ["modules", "providers"],
   "terraform.languageServer.enable": true,
+  "settings.cycle": [
+    {
+      "id": "copilot",
+      "overrideWorkspaceSettings": true,
+      "values": [{ "github.copilot.inlineSuggest.enable": false }, { "github.copilot.inlineSuggest.enable": true }]
+    }
+  ],
   "github.copilot.enable": {
     "*": true,
-    "plaintext": false,
+    "plaintext": true,
     "markdown": true,
-    "scminput": false
+    "scminput": true
   },
-  "githubPullRequests.pullBranch": "never"
+  "github.copilot.inlineSuggest.enable": true
 }

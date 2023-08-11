@@ -51,7 +51,8 @@ zstyle ':completion:*' list-colors ''
 setopt correct
 # glob表現無視
 setopt +o nomatch
-
+# 履歴の重複排除
+setopt hist_ignore_dups
 
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -75,9 +76,12 @@ setopt nolistbeep
 # 同時に起動したzshの間で履歴を共有する
 setopt share_history
 
-
+# local
+export PATH=$PATH:$HOME/.local/bin
 # brew
 export HOMEBREW_NO_AUTO_UPDATE=1
+# python
+export PATH=$PATH:$HOME/Library/Python/3.11/bin
 # rust
 export PATH=$PATH:$HOME/.cargo/bin
 # go
@@ -119,8 +123,10 @@ alias sleep='gsleep'
 alias sll='silicon --from-clipboard --to-clipboard -l'
 alias kc='kubectl'
 alias tf='terraform'
+alias awso="source _aws-easy-sso"
 
 # docker
+alias dcu='docker compose up'
 alias dcud='docker compose up -d --build'
 alias dcd='docker compose down'
 alias dcr='docker compose restart'
@@ -134,7 +140,7 @@ drmi() {
 
 # git
 alias gap='git add -p'
-alias gbd='git branch -D'
+alias gb='git branch'
 alias gc='git checkout'
 alias gsc='git switch -c'
 alias gp='git pull --prune'
@@ -142,14 +148,22 @@ alias gpff='(){git fetch origin $1 | git reset --hard origin/$1}'
 alias gpush='git push -u origin HEAD'
 alias gca='git commit --amend --no-edit'
 alias gs='git status'
+alias gl='git log --oneline --graph'
 alias gss='git stash save'
 alias gsa='git stash apply'
+alias gsp='git stash pop'
 alias gopen='git open'
-alias glog='git log --oneline --decorate --graph --all'
-alias del_branch='git branch --all | grep -vE "develop|development|dev|staging|stg|master|main|remotes|demo" | xargs -I % git branch -D %'
+alias del_branch='git branch --all | grep -vE "develop|development|dev|staging|stg|deploy\/staging|deploy\/production|master|main|remotes|deploy\/demo" | xargs -I % git branch -D %'
 alias git_reset='git reset --soft HEAD~ && git reset HEAD'
 gcom() {
     echo $@ | xargs -I % git commit -S -m "%"
+}
+
+awsp() {
+    profile=$(aws configure list-profiles | sort | fzf --reverse)
+    unset AWS_ACCESS_KEY_ID
+    unset AWS_SECRET_ACCESS_KEY
+    export AWS_PROFILE=$profile
 }
 
 # fd - cd to selected directory
