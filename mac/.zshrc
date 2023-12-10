@@ -31,6 +31,7 @@ zinit light paulirish/git-open
 
 eval "$(starship init zsh)"
 eval "$(direnv hook zsh)"
+# eval "$(github-copilot-cli alias -- "$0")"
 
 autoload -U +X bashcompinit && bashcompinit
 autoload -Uz compinit && compinit
@@ -51,11 +52,24 @@ zstyle ':completion:*' list-colors ''
 setopt correct
 # glob表現無視
 setopt +o nomatch
-# 履歴の重複排除
+# History設定
+HISTFILE=~/.zsh_history
+HISTSIZE=100000
+SAVEHIST=100000
+# 同時に起動したzshの間で履歴を共有する
+setopt share_history
+# 重複排除
 setopt hist_ignore_dups
+# 履歴を追加 (毎回 .zsh_history を作るのではなく)
+setopt hist_ignore_all_dups
+# 履歴をインクリメンタルに追加
+setopt inc_append_history
+# 日本語ファイル名を表示可能にする
+setopt print_eight_bit
 
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# command history
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!**/.git/*"'
 export FZF_DEFAULT_OPTS="
     --height 80% --reverse --border=sharp --margin=0,1
@@ -68,20 +82,25 @@ export FZF_CTRL_T_OPTS="
     --preview-window=right:60%
 "
 
-
 # ビープ音の停止
 setopt no_beep
 # ビープ音の停止(補完時)
 setopt nolistbeep
-# 同時に起動したzshの間で履歴を共有する
-setopt share_history
+
+# brew
+export HOMEBREW_NO_AUTO_UPDATE=1
+# terraform
 
 # local
 export PATH=$PATH:$HOME/.local/bin
-# brew
-export HOMEBREW_NO_AUTO_UPDATE=1
+# aqua
+export PATH="$PATH:$(aqua root-dir)/bin"
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
 # python
-export PATH=$PATH:$HOME/Library/Python/3.11/bin
+# export PATH=$PATH:$HOME/Library/Python/3.11/bin
 # rust
 export PATH=$PATH:$HOME/.cargo/bin
 # go
@@ -89,7 +108,17 @@ export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 # volta
 export VOLTA_HOME="$HOME/.volta"
-export PATH="$VOLTA_HOME/bin:$PATH"
+export PATH="$PATH:$VOLTA_HOME/bin"
+# npm
+export PATH=$PATH:`npm prefix --location=global`/bin
+# php
+export PATH="$PATH:/opt/homebrew/opt/php/bin"
+export PATH="$PATH:/opt/homebrew/opt/php/sbin"
+# bun completions
+[ -s "/Users/shuto.uchida/.bun/_bun" ] && source "/Users/shuto.uchida/.bun/_bun"
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$PATH:$BUN_INSTALL/bin:"
 
 
 # Ctrl+x -> d
@@ -101,6 +130,8 @@ add-zsh-hook chpwd chpwd_recent_dirs
 # Ctrl+x -> r
 # peco でコマンドの実行履歴を表示
 bindkey '^xr' anyframe-widget-execute-history
+# 上キー
+bindkey '^\e[A' anyframe-widget-execute-history
 
 # Ctrl+x -> b
 # peco でGitブランチを表示して切替え
@@ -235,3 +266,6 @@ fdl() {
     cid=$(docker ps -a | sed 1d | fzf -q "$1" | awk '{print $1}')
     [ -n "$cid" ] && docker logs -f --tail=200 "$cid"
 }
+
+# other
+alias awslocal='AWS_ACCESS_KEY_ID=dummy AWS_SECRET_ACCESS_KEY=dummy awslocal'

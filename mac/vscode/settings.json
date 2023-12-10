@@ -5,17 +5,33 @@
   "workbench.iconTheme": "material-icon-theme",
   "workbench.colorTheme": "One Dark Pro",
   "workbench.list.smoothScrolling": true,
+  "workbench.tree.renderIndentGuides": "always",
+  "workbench.tree.indent": 8,
   "window.newWindowDimensions": "inherit",
   "files.insertFinalNewline": true,
-  "files.associations": {},
+  "files.associations": {
+    "*.properties": "environment",
+    "*.conf": "toml",
+    "*.cnf": "toml"
+  },
 
   "terminal.integrated.fontFamily": "FiraCode Nerd Font",
   "terminal.integrated.copyOnSelection": true,
   "terminal.integrated.rightClickBehavior": "paste",
   "terminal.integrated.enableMultiLinePasteWarning": false,
   "terminal.integrated.smoothScrolling": true,
+  "terminal.integrated.scrollback": 10000,
+  "terminal.integrated.ignoreBracketedPasteMode": true,
+  "scm.defaultViewMode": "tree",
+  "search.defaultViewMode": "tree",
+  "search.useIgnoreFiles": false,
+  "swaggerViewer.previewInBrowser": true,
+  "problems.defaultViewMode": "table",
   "explorer.confirmDragAndDrop": false,
   "explorer.confirmDelete": false,
+  "explorer.compactFolders": false,
+  "center-editor-window.offset": 0,
+  "markdown.extension.preview.autoShowPreviewToSide": false,
 
   "editor.renderWhitespace": "boundary",
   "editor.trimAutoWhitespace": false,
@@ -24,15 +40,20 @@
   "editor.cursorSmoothCaretAnimation": "on",
   "editor.smoothScrolling": true,
   "editor.inlineSuggest.enabled": true,
+  "editor.inlineSuggest.showToolbar": "always",
   "editor.tabSize": 4,
   "editor.formatOnSave": true,
   "editor.formatOnPaste": false,
   "editor.formatOnType": false,
+  "editor.suggestSelection": "recentlyUsedByPrefix",
+
   "trailing-spaces.trimOnSave": true,
   "trailing-spaces.syntaxIgnore": ["markdown"],
-  "gitlens.statusBar.enabled": false,
   "githubPullRequests.pullBranch": "never",
   "githubPullRequests.terminalLinksHandler": "github",
+  "gitlens.codeLens.enabled": false,
+  "gitlens.statusBar.enabled": false,
+  "gitlens.currentLine.pullRequests.enabled": true,
   "redhat.telemetry.enabled": true,
   "formattingToggle.affects": ["editor.formatOnSave"],
   "editor.defaultFormatter": "esbenp.prettier-vscode",
@@ -40,8 +61,7 @@
   "prettier.tabWidth": 2,
   "prettier.useTabs": false,
   "stylelint.validate": ["css", "scss"],
-  "todohighlight.keywords": ["NOTE:"],
-  "cSpell.enabled": false,
+  "todohighlight.keywords": ["NOTE:", "WARN:", "HOPE:"],
 
   "[html]": {
     "editor.tabSize": 2,
@@ -49,6 +69,11 @@
   },
   "[xml]": {
     "editor.defaultFormatter": "DotJoshJohnson.xml",
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true
+  },
+  "[isml]": {
+    "editor.defaultFormatter": "SqrTT.prophet",
     "editor.tabSize": 2,
     "editor.insertSpaces": true
   },
@@ -70,6 +95,15 @@
     "editor.tabSize": 2,
     "editor.insertSpaces": true,
     "editor.codeActionsOnSave": {
+      "source.organizeImports": true,
+      "source.fixAll.eslint": true
+    }
+  },
+  "[javascriptreact]": {
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": true,
       "source.fixAll.eslint": true
     }
   },
@@ -77,6 +111,15 @@
     "editor.tabSize": 2,
     "editor.insertSpaces": true,
     "editor.codeActionsOnSave": {
+      "source.organizeImports": false,
+      "source.fixAll.eslint": true
+    }
+  },
+  "[typescriptreact]": {
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": false,
       "source.fixAll.eslint": true
     }
   },
@@ -93,9 +136,34 @@
     "no-inline-html": false, // MD033: HTML記述を許容
     "no-bare-urls": false // MD034: URLそのままの表記を許容
   },
+  "[php]": {
+    "editor.defaultFormatter": "bmewburn.vscode-intelephense-client"
+  },
+  "[python]": {
+    "editor.formatOnSave": true,
+    "editor.insertSpaces": true,
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.codeActionsOnSave": {
+      "source.fixAll": true,
+      "source.organizeImports": true
+    }
+  },
+  "ruff.lint.args": ["--line-length=120"],
+  "ruff.format.args": ["--line-length=120"],
+  "ruff.fixAll": true,
+  "ruff.organizeImports": true,
+  "ruff.lint.run": "onSave",
+  "ruff.enable": true,
+  "python.languageServer": "Pylance",
+  "python.analysis.completeFunctionParens": true,
+  "mypy-type-checker.args": ["--ignore-missing-imports"],
+
   "[json]": {
     "editor.tabSize": 2,
-    "editor.insertSpaces": true
+    "editor.insertSpaces": true,
+    "editor.codeActionsOnSave": {
+      "source.sortPackageJson": true
+    }
   },
   "[yaml]": {
     "editor.defaultFormatter": "redhat.vscode-yaml",
@@ -173,5 +241,97 @@
     "markdown": true,
     "scminput": true
   },
-  "github.copilot.inlineSuggest.enable": true
+  "github.copilot.editor.enableAutoCompletions": true,
+
+  "cSpell.enabled": true,
+  "cSpell.maxDuplicateProblems": 1,
+  "cSpell.maxNumberOfProblems": 30,
+  "cSpell.ignoreWords": ["gorm", "foreignkey", "openapi", "wireinject", "stylelint"],
+  "cSpell.ignoreRegExpList": ["\"github.com.+\"", "\"gopkg.in.+\""],
+  "cSpell.ignorePaths": [
+    "**/.vscode/**",
+    "**/.git/**",
+    "**/Library/**",
+    "*Dockerfile*",
+    "go.mod",
+    "go.sum",
+    "package-lock.json",
+    "**/node_modules/**",
+    "**/vscode-extension/**"
+  ],
+  "intelephense.stubs": [
+    "apache",
+    "bcmath",
+    "bz2",
+    "calendar",
+    "com_dotnet",
+    "Core",
+    "ctype",
+    "curl",
+    "date",
+    "dba",
+    "dom",
+    "enchant",
+    "exif",
+    "FFI",
+    "fileinfo",
+    "filter",
+    "fpm",
+    "ftp",
+    "gd",
+    "gettext",
+    "gmp",
+    "hash",
+    "iconv",
+    "imap",
+    "intl",
+    "json",
+    "ldap",
+    "libxml",
+    "mbstring",
+    "meta",
+    "mysqli",
+    "oci8",
+    "odbc",
+    "openssl",
+    "pcntl",
+    "pcre",
+    "PDO",
+    "pdo_ibm",
+    "pdo_mysql",
+    "pdo_pgsql",
+    "pdo_sqlite",
+    "pgsql",
+    "Phar",
+    "posix",
+    "pspell",
+    "random",
+    "readline",
+    "Reflection",
+    "session",
+    "shmop",
+    "SimpleXML",
+    "snmp",
+    "soap",
+    "sockets",
+    "sodium",
+    "SPL",
+    "sqlite3",
+    "standard",
+    "superglobals",
+    "sysvmsg",
+    "sysvsem",
+    "sysvshm",
+    "tidy",
+    "tokenizer",
+    "xml",
+    "xmlreader",
+    "xmlrpc",
+    "xmlwriter",
+    "xsl",
+    "Zend OPcache",
+    "zip",
+    "zlib",
+    "wordpress"
+  ]
 }
